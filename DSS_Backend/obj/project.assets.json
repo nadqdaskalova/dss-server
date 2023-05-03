@@ -1031,11 +1031,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/nadya/Projects/DSS_Backend/DSS_Backend/DSS_Backend.csproj",
+      "projectUniqueName": "/Users/nadya/Desktop/vum/DSS VUM/dss-server/DSS_Backend/DSS_Backend.csproj",
       "projectName": "DSS_Backend",
-      "projectPath": "/Users/nadya/Projects/DSS_Backend/DSS_Backend/DSS_Backend.csproj",
+      "projectPath": "/Users/nadya/Desktop/vum/DSS VUM/dss-server/DSS_Backend/DSS_Backend.csproj",
       "packagesPath": "/Users/nadya/.nuget/packages/",
-      "outputPath": "/Users/nadya/Projects/DSS_Backend/DSS_Backend/obj/",
+      "outputPath": "/Users/nadya/Desktop/vum/DSS VUM/dss-server/DSS_Backend/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/Users/nadya/.nuget/NuGet/NuGet.Config"

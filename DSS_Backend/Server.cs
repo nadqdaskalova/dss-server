@@ -69,6 +69,7 @@ namespace DSS_Backend
             {
                 var context = serviceScope.ServiceProvider.GetService<DataContext>();
                 context?.Database.EnsureCreated();
+                context?.Database.Migrate();
             }
 
             app.UseRouting();

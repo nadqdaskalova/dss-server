@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "pzN9S1UeTPAORORMRgHOYMq08C5VGb9eUUZQ2FlU214ljkA4KUvez4cTy4MzUZvXWUO48qajH9bFybBvwh9OzA==",
+  "dgSpecHash": "aTzNar4b8ozDn9RxQT1XzwhxQF6kXyELJ5Wthe2IxFVUiShKVkko76sXATEHl2slJnAyANkU7AkMX5XvMhkctA==",
   "success": true,
-  "projectFilePath": "/Users/nadya/Projects/DSS_Backend/DSS_Backend/DSS_Backend.csproj",
+  "projectFilePath": "/Users/nadya/Desktop/vum/DSS VUM/dss-server/DSS_Backend/DSS_Backend.csproj",
   "expectedPackageFiles": [
     "/Users/nadya/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/nadya/.nuget/packages/microsoft.entityframeworkcore/7.0.5/microsoft.entityframeworkcore.7.0.5.nupkg.sha512",
