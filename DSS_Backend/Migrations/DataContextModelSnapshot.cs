@@ -100,13 +100,11 @@ namespace DSS_Backend.Migrations
 
             modelBuilder.Entity("DSS_Backend.Models.Comment", b =>
                 {
-                    b.HasOne("DSS_Backend.Models.Article", "Article")
+                    b.HasOne("DSS_Backend.Models.Article", null)
                         .WithMany("Comments")
                         .HasForeignKey("articleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Article");
                 });
 
             modelBuilder.Entity("DSS_Backend.Models.Article", b =>

@@ -98,7 +98,7 @@ namespace DSS_Backend.Controllers {
         _context.Comments.Add(comment);
         await _context.SaveChangesAsync();
 
-        return CreatedAtAction(nameof(GetCommentById), new { id = comment.id }, comment);
+        return CreatedAtAction(nameof(GetArticleById), new { id = article.id }, article);
     }
 
 
