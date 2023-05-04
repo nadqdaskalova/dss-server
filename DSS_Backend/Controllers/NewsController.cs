@@ -16,6 +16,20 @@ namespace DSS_Backend.Controllers {
       _context = context;
     }
 
+    public class ArticleDto
+    {
+        public string description { get; set; }
+        public string title { get; set; }
+        public string image { get; set; }
+    }
+
+    public class CommentDto
+    {
+        public string description { get; set; }
+        public int articleId { get; set; }
+    }
+
+
     // GET: /article
     [HttpGet("article")]
     public async Task < ActionResult < IEnumerable < Article >>> GetAllArticles() {
@@ -36,13 +50,19 @@ namespace DSS_Backend.Controllers {
 
     // POST: /article
     [HttpPost("article")]
-    public async Task < ActionResult < Article >> CreateArticle(Article article) {
-      _context.Articles.Add(article);
-      await _context.SaveChangesAsync();
+    public async Task<ActionResult<Article>> CreateArticle([FromBody] ArticleDto articleDto)
+    {
+        var article = new Article
+        {
+            description = articleDto.description,
+            title = articleDto.title,
+            image = articleDto.image
+        };
 
-      return CreatedAtAction(nameof(GetArticleById), new {
-        id = article.id
-      }, article);
+        _context.Articles.Add(article);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(GetArticleById), new { id = article.id }, article);
     }
 
     // DELETE: /article/:articleId
@@ -59,22 +79,28 @@ namespace DSS_Backend.Controllers {
       return NoContent();
     }
 
-    // POST: /article/:articleId/comment
-    [HttpPost("article/{id}/comment")]
-    public async Task < ActionResult < Comment >> CreateComment(int id, Comment comment) {
-      var article = await _context.Articles.FindAsync(id);
-      if (article == null) {
-        return NotFound();
-      }
+    // POST: /article/{articleId}/comment
+    [HttpPost("article/{articleId}/comment")]
+    public async Task<ActionResult<Comment>> CreateComment(int articleId, [FromBody] CommentDto commentDto)
+    {
+        var article = await _context.Articles.FindAsync(articleId);
+        if (article == null)
+        {
+            return NotFound();
+        }
 
-      comment.articleId = id;
-      _context.Comments.Add(comment);
-      await _context.SaveChangesAsync();
+        var comment = new Comment
+        {
+            description = commentDto.description,
+            articleId = commentDto.articleId
+        };
 
-      return CreatedAtAction(nameof(GetArticleById), new {
-        id = comment.id
-      }, comment);
+        _context.Comments.Add(comment);
+        await _context.SaveChangesAsync();
+
+        return CreatedAtAction(nameof(GetCommentById), new { id = comment.id }, comment);
     }
+
 
     // DELETE: /article/comment/:commentId
     [HttpDelete("article/comment/{id}")]
@@ -89,6 +115,20 @@ namespace DSS_Backend.Controllers {
 
       return NoContent();
     }
+
+    // GET: /comment/{id}
+    [HttpGet("comment/{id}")]
+    public async Task<ActionResult<Comment>> GetCommentById(int id)
+    {
+        var comment = await _context.Comments.FindAsync(id);
+        if (comment == null)
+        {
+            return NotFound();
+        }
+
+        return comment;
+    }
+
 
     private bool ArticleExists(int id) {
       return _context.Articles.Any(e => e.id == id);

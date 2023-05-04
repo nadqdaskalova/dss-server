@@ -11,6 +11,5 @@ namespace DSS_Backend.Models
         public string description { get; set; }
 
         public int articleId { get; set; }
-        public Article Article { get; set; }
     }
 }

@@ -28,7 +28,20 @@ namespace DSS_Backend
                 options.UseNpgsql(Configuration.GetConnectionString("dss_backend"));
                 options.EnableSensitiveDataLogging(); 
             });
+
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder =>
+                {
+                    builder.WithOrigins("http://localhost:3001")
+                        .AllowAnyMethod()
+                        .AllowAnyHeader();
+                });
+            });
+
         }
+
+        
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerFactory loggerFactory)
         {
@@ -73,6 +86,8 @@ namespace DSS_Backend
             }
 
             app.UseRouting();
+
+            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {

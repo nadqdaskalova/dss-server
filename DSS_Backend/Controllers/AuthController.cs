@@ -7,6 +7,12 @@ using System.Threading.Tasks;
 
 namespace DSS_Backend.Controllers
 {
+    public class SignInDto
+    {
+        public string email { get; set; }
+        public string password { get; set; }
+    }
+
     [ApiController]
     [Route("auth")]
     public class AuthController : ControllerBase
@@ -20,19 +26,20 @@ namespace DSS_Backend.Controllers
 
         // POST: /auth/signin
         [HttpPost("signin")]
-        public async Task<ActionResult<User>> Authenticate(User user)
+        public async Task<ActionResult<User>> Authenticate([FromBody] SignInDto signInDto)
         {
-            var dbUser = await _context.Users.FirstOrDefaultAsync(u => u.name == user.name);
+            var dbUser = await _context.Users.FirstOrDefaultAsync(u => u.email == signInDto.email);
             if (dbUser == null)
             {
                 return BadRequest(new { message = "Username or password is incorrect" });
             }
-            if (dbUser.password != user.password)
+            if (dbUser.password != signInDto.password)
             {
                 return BadRequest(new { message = "Username or password is incorrect" });
             }
             return dbUser;
         }
+
 
         // POST: /auth/signup
         [HttpPost("signup")]
